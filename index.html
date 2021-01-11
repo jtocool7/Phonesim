@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phone Simulator</title>
+  <style>
+  *{
+    font-family: calibri;
+    
+  }
+  #cvs{
+    border:1px solid;
+     background:url("https://cdn57.androidauthority.net/wp-content/uploads/2020/07/galaxy-note-20-wallpaper-1.jpg");
+     width:563px;
+     height:1218px;
+     border-radius:50px;
+  }
+  
+  .hide{
+    display:none;
+  }
+  
+  #one{
+    top:850px;
+    left:50px;
+  }
+  
+  #three{
+    top:850px;
+    left:450px;
+  }
+  
+  #two{
+    top:850px;
+    left:260px;
+  }
+  
+  #five{
+    top:920px;
+    left:260px;
+  }
+  
+  #six{
+    top:920px;
+    left:450px;
+  }
+  
+  #four{
+    top:920px;
+    left:50px;
+  }
+  
+  #seven{
+    top:990px;
+    left:50px;
+  }
+  
+  #nine{
+    top:990px;
+    left:450px;
+  }
+  
+  #eight{
+    top:990px;
+    left:260px;
+    
+  }
+  
+  #x{
+    top:1060px;
+    left:50px;
+    border-top:
+  }
+  
+  #ok{
+    top:1060px;
+   left:450px; 
+  }
+  
+  #zero{
+     top:1060px;
+    left:260px;
+  }
+  
+  
+  
+  .button{
+   
+    border-radius:50px;
+    width:110px;
+    height:110px;
+      display:flex;
+     justify-content:center;
+     align-items:center;
+     cursor:pointer;
+     font-size:35px;
+     color:white;
+     position:absolute;
+     
+  }
+  
+  #p1{
+     position:absolute;
+    top:700px;
+    width:100px;
+    font-size:20px;
+    left:270px;
+  }
+  
+  
+  
+  #p2{
+     position:absolute;
+    top:750px;
+    width:250px;
+    font-size:20px;
+    left:180px;
+  }
+  
+  #show1{
+    background:white;
+    border-radius:50px;
+    position:absolute;
+    top:820px;
+    width:320px;
+    height:30px;
+    left:140px;
+  }
+  
+  #slide{
+     width:200px;
+     height:5px;
+     background:white;
+     border-radius:4px;
+     position:absolute;
+     top:1213px;
+     right:50%;
+   transform: translateX(+10%);
+     
+   }
+  </style>
+</head>
+<body>
+  <canvas id=cvs>
+    
+  </canvas>
+  <div id= fullPass class=hide>
+  <div id=show1>
+        <p>
+        
+        </p>
+  </div>
+  <div id=enterpin>
+  <p id=p1>
+  Enter Pin
+  </p>
+ 
+  <p id = p2>
+  Your Pin Must Contain 4 Digits
+  </p>
+  </div>
+  <div id=startScreen>
+  <div id=one class=button>
+  1
+  </div>
+  <div id=two class=button>
+  2
+  </div>
+  <div id=three class=button>
+  3
+  </div>
+  <div id=four class=button>
+  4
+  </div>
+  <div id=five class=button>
+  5
+  </div>
+  <div id=six class=button>
+  6
+  </div>
+  <div id=seven class=button>
+  7
+  </div>
+  <div id=eight class=button>
+  8
+  </div>
+  <div id=nine class=button>
+  9
+  </div>
+  <div id=x class=button>
+  x
+  </div>
+  <div id=zero class = button>
+  0
+  </div>
+  <div id=ok class=button>
+   OK 
+  </div>
+  </div>
+  </div>
+  <div id=slide>
+  <p>
+  
+  </p>
+  </div>
+  <script>
+  const cvs = document.getElementById('cvs');
+  const cxt = cvs.getContext('2d');
+  // conts
+  const state = { 
+  current:0.1,
+  frstart:0.1,
+  start : 0,
+  norm : 1,
+  discover : 2,
+  app : 3,
+  }
+  
+  //swipe
+  cvs.addEventListener("touchstart", startTouch, false);
+cvs.addEventListener("touchmove", moveTouch, false);
+ 
+// Swipe Up / Down / Left / Right
+var initialX = null;
+var initialY = null;
+ 
+function startTouch(e) {
+  initialX = e.touches[0].clientX;
+  initialY = e.touches[0].clientY;
+};
+ 
+function moveTouch(e) {
+  if (initialX === null) {
+    return;
+  }
+ 
+  if (initialY === null) {
+    return;
+  }
+ 
+  var currentX = e.touches[0].clientX;
+  var currentY = e.touches[0].clientY;
+ 
+  var diffX = initialX - currentX;
+  var diffY = initialY - currentY;
+ 
+  if (Math.abs(diffX) > Math.abs(diffY)) {
+    // sliding horizontally
+    if (diffX > 0) {
+      // swiped left
+      console.log("swiped left");
+    } else {
+      // swiped right
+      console.log("swiped right");
+    }  
+  } else {
+    // sliding vertically
+    if (diffY > 0) {
+      // swiped up
+      if(state.current == 0.1){
+      state.current = 0;
+      }
+      console.log("swiped up");
+    } else {
+      // swiped down
+      console.log("swiped down");
+    }  
+  }
+ 
+  initialX = null;
+  initialY = null;
+   
+  e.preventDefault();
+};
+  
+  // variables
+  
+  
+  // functions
+  function draw(){
+  if(state.current == 0.1){
+  
+  
+  }
+  
+  if(state.current == 0){
+  fullPass.classList.remove('hide');
+  }
+  }
+  
+  // bacground
+  // https://wallpapercave.com/wp/wp7035759.jpg
+  
+  //loop
+  function loop(){
+  requestAnimationFrame(loop);
+  draw();
+  console.log(state.current);
+  }
+  
+  loop();
+  </script>
+</body>
+</html>
