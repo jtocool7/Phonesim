@@ -348,16 +348,18 @@ function moveTouch(e) {
   // functions
   function draw(){
   if(state.current == 0.1){
-  
+  rs.classList.remove('hide');
   
   }
   
   if(state.current == 0){
   fullPass.classList.remove('hide');
+  rs.classList.add('hide');
   }
   if(state.current == 0.1){
   fullPass.classList.add('hide');
   }
+  
   }
   
   // bacground
