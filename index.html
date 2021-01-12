@@ -14,7 +14,6 @@
      width:563px;
      height:1218px;
      border-radius:50px;
-    z-index:0;
   }
   
   .hide{
@@ -113,7 +112,7 @@
   #p2{
      position:absolute;
     top:750px;
-    width:250px;
+    width:290px;
     font-size:20px;
     left:180px;
   }
@@ -135,9 +134,55 @@
      border-radius:4px;
      position:absolute;
      top:1213px;
-     right:50%;
-   transform: translateX(+10%);
-     z-index:1;
+     left:190px;
+   
+     
+   }
+   
+  
+   
+   #cam{
+     position:absolute;
+     width:39px;
+     height:39px;
+     border-radius:50px;
+     background:black;
+     top:10px;
+     left:276.11px;
+   }
+   
+   #lock{
+     position:absolute;
+     top:90px;
+     width:50px;
+     height:80px;
+   }
+   
+   #status{
+     width:100px;
+     position:absolute;
+     top:20px;
+     left:400px;
+   }
+   
+   #T{
+     position:absolute;
+     top:15px;
+     left:50px;
+   }
+   
+   #stu{
+     position:absolute;
+     top:1000px;
+     left:215px;
+     font-size:25px;
+   }
+   
+   #clock{
+     font-size:50px;
+     position:absolute;
+     top:450px;
+     left:230px;
    }
   </style>
 </head>
@@ -145,7 +190,27 @@
   <canvas id=cvs>
     
   </canvas>
+  
+  <div id=cam>
+  <p>
+  
+  </p>
+  </div>
+  <div id=rs>
+  <div id=stu>
+  Swipe to unlock
+  </div>
+  <div id="clock">
+    <span id="hour"></span>:<span id="minute"></span>
+    </div>
+  </div>
+   <!-- <img id=lock src="https://cdn.discordapp.com/attachments/743458313089581079/798564523615060009/camera.png" alt="lock"> -->
+    <img id=status src="https://www9.lunapic.com/editor/working/161005007683082799?61228084" alt="status">
+    <div id=T>
+    T-Mobile
+    </div>
   <div id= fullPass class=hide>
+
   <div id=show1>
         <p>
         
@@ -265,6 +330,9 @@ function moveTouch(e) {
     } else {
       // swiped down
       console.log("swiped down");
+      if(state.current == 0){
+      state.current = 0.1;
+      }
     }  
   }
  
@@ -287,17 +355,42 @@ function moveTouch(e) {
   if(state.current == 0){
   fullPass.classList.remove('hide');
   }
+  if(state.current == 0.1){
+  fullPass.classList.add('hide');
+  }
   }
   
   // bacground
   // https://wallpapercave.com/wp/wp7035759.jpg
   
+  //time
+  const updateTime = () => {
+  
+  const currentTime = new Date();
+  
+ let  currentHour = currentTime.getHours();
+  const currentMinute = currentTime.getMinutes();
+  
+  if ( currentHour > 12){
+  
+  currentHour-=12;
+  };
+  
+  
+  
+  hour.textContent = currentHour.toString();
+  minute.textContent = currentMinute.toString().padStart(2, '0');
+  }
+  
+  
+  
+  setInterval(updateTime, 1000);
+  updateTime();
   //loop
   function loop(){
   requestAnimationFrame(loop);
   draw();
   console.log(state.current);
-    console.log('updateworked')
   }
   
   loop();
