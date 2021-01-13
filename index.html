@@ -176,6 +176,7 @@
      top:1000px;
      left:215px;
      font-size:25px;
+     
    }
    
    #clock{
@@ -228,8 +229,59 @@ overflow:hidden;
      top:370px;
      left:13px;
    }
-  
    
+   #iedge{
+     width:120px;
+     height:700px;
+     background:#CDCDCD;
+     border-radius:50px;
+     position:absolute;
+     top:200px;
+     opacity:0.9;
+     left:400px;
+     z-index:1;
+   }
+  
+  
+  #clock2{
+    width:90px;
+    position:absolute;
+    top:50px;
+    left:15px;
+  }
+  
+  #chrome{
+    width:110px;
+    position:absolute;
+    top:150px;
+    left:10px;
+  }
+  
+  #gmail{
+    width:160px;
+    position:absolute;
+    top:230px;
+    left:-15px;
+    
+  }
+   
+ #gmaps{
+   
+   position:absolute;
+   top:90px;
+   left:40px;
+   width:500px;
+   border:2px solid;
+   border-radius:10px;
+   height:1100px;
+ }
+ 
+ #gmi{
+   width:110px;
+   position:absolute;
+   top:350px;
+   left:10px;
+ }
    
    
   
@@ -239,6 +291,17 @@ overflow:hidden;
   <canvas id=cvs>
     
   </canvas>
+  <iframe class=hide id=gmaps src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.1503819264803!2d-77.03871848491536!3d38.89767627957066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7bcdecbb1df%3A0x715969d86d0b76bf!2sThe%20White%20House!5e0!3m2!1sen!2sus!4v1610565433976!5m2!1sen!2sus"  frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  
+  <div class=hide id=iedge>
+  
+  <img id="gmi" onclick="gmif()" src="https://i.redd.it/lclr2bm9cyf41.png" alt="gmapsicon">
+  <img id=clock2 src="https://androidapksfree.com/wp-content/uploads/2017/12/Samsung-Clock-APK-1.png" alt="clock">
+  
+  <img id=chrome src="https://1000logos.net/wp-content/uploads/2017/08/Chrome-Logo-768x626.png" alt="chrome">
+  
+  <img id=gmail src="https://1000logos.net/wp-content/uploads/2018/05/Gmail-logo.png" alt="gmail">
+  </div>
   
   <div id=cam>
   <p>
@@ -347,6 +410,7 @@ overflow:hidden;
   discover : 2,
   app : 3,
   camapp : 4,
+  maps:5,
   }
   
   //swipe
@@ -399,12 +463,35 @@ function moveTouch(e) {
       
        
       if(state.current == 0 && tt1 == true){
-      state.current = 0.1;
+      state.current = 0;
+      }
+      
+      if(state.current == 4 && startt == true){
+      state.current = 0
+      cxt.clearRect(0,0,cvs.width,cvs.height);
+      video.classList.add('hide');
+      }
+      
+      if(state.current == 4 && startt == false){
+      state.current = 1
+      cxt.clearRect(0,0,cvs.width,cvs.height);
+      video.classList.add('hide');
       }
       console.log("swiped up");
     } else {
       // swiped down
       console.log("swiped down");
+      if(state.current == 4 && startt == true){
+      state.current = 0
+      cxt.clearRect(0,0,cvs.width,cvs.height);
+      video.classList.add('hide');
+      }
+      
+      if(state.current == 4 && startt == false){
+      state.current = 1
+      cxt.clearRect(0,0,cvs.width,cvs.height);
+      video.classList.add('hide');
+      }
       if(state.current == 0){
       state.current = 0.1;
       }
@@ -418,7 +505,20 @@ function moveTouch(e) {
 };
   
   // variables
+
   
+  
+  
+  
+  
+  function gmif(){
+  cxt.fillRect(0,0,cvs.width,cvs.height);
+  gmaps.classList.remove('hide');
+state.current = 5;
+stu.classList.add('hide');
+rs.classList.add('hide');
+  
+  }
   
   // functions
   function draw(){
@@ -462,9 +562,21 @@ function moveTouch(e) {
   }
   }
   
+  var ep = false;;
+  
   //event listener
   edge.addEventListener('touchmove', function(){
-  state.current = 0;
+  iedge.classList.remove('hide');
+  ep = true;
+  edge.classList.add('hide');
+  })
+  
+  cvs.addEventListener('click', function(){
+  if(ep == true){
+  ep = false;
+  iedge.classList.add('hide');
+  edge.classList.remove('hide');
+  }
   })
   
   var appd = false;
