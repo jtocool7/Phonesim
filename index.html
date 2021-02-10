@@ -125,6 +125,9 @@
     width:320px;
     height:30px;
     left:140px;
+    font-size:20px;
+    text-align:center;
+    
   }
   
   #slide{
@@ -282,6 +285,25 @@ overflow:hidden;
    top:350px;
    left:10px;
  }
+ 
+ #pict{
+   width:285px;
+   height:200px;
+  
+   position:absolute;
+   top:850px;
+   left:150px;
+ }
+ 
+ #camp{
+   width:50px;
+   height:50px;
+   background:white;
+   border-radius: 50px;
+   position:absolute;
+   top:1100px;
+   left:270px;
+ }
    
    
   
@@ -292,6 +314,11 @@ overflow:hidden;
     
   </canvas>
   <iframe class=hide id=gmaps src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.1503819264803!2d-77.03871848491536!3d38.89767627957066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7bcdecbb1df%3A0x715969d86d0b76bf!2sThe%20White%20House!5e0!3m2!1sen!2sus!4v1610565433976!5m2!1sen!2sus"  frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+  <canvas id=pict>
+  
+  </canvas>
+  
+  <div id="camp" onclick="tp()" class=hide></div>
   
   <div class=hide id=iedge>
   
@@ -347,31 +374,31 @@ overflow:hidden;
   </p>
   </div>
   <div id=startScreen>
-  <div id=one class=button onclick = "vibrate(500), one = true, pasbox()">
+  <div id=one class=button onclick = "vibrate(500), one = true, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
   1
   </div>
-  <div id=two class=button onclick = "vibrate(500), pasbox()">
+  <div id=two class=button onclick = "vibrate(500), one = false, two = true, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
   2
   </div>
-  <div id=three class=button onclick = "vibrate(500), pasbox()">
+  <div id=three class=button onclick = "vibrate(500), one = false, two = false, three = true, four = false, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
   3
   </div>
-  <div id=four class=button onclick = "vibrate(500), pasbox()">
+  <div id=four class=button onclick = "vibrate(500), one = false, two = false, three = false, four = true, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
   4
   </div>
-  <div id=five class=button onclick = "vibrate(500), pasbox()">
+  <div id=five class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = true, six = false, seven = false, eight = false, nine = false, pasbox()">
   5
   </div>
-  <div id=six class=button onclick = "vibrate(500), pasbox()">
+  <div id=six class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = true, seven = false, eight = false, nine = false, pasbox()">
   6
   </div>
-  <div id=seven class=button onclick = "vibrate(500), pasbox()">
+  <div id=seven class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = true, eight = false, nine = false, pasbox()">
   7
   </div>
-  <div id=eight class=button onclick = "vibrate(500), pasbox()">
+  <div id=eight class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = true, nine = false, pasbox()">
   8
   </div>
-  <div id=nine class=button onclick = "vibrate(500), pasbox()">
+  <div id=nine class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = true, pasbox()">
   9
   </div>
   <div id=x class=button onclick = "vibrate(500), pasbox()">
@@ -396,9 +423,13 @@ overflow:hidden;
    </div>
   </div>
    
-  
+  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
   
   <script>
+
+var ones = true;
+var x2 = document.cookie = ones;
+  
   const cvs = document.getElementById('cvs');
   const cxt = cvs.getContext('2d');
   // conts
@@ -470,14 +501,21 @@ function moveTouch(e) {
       state.current = 0.1
       cxt.clearRect(0,0,cvs.width,cvs.height);
       video.classList.add('hide');
+       gmaps.classList.add('hide');
+       pict.classList.add('hide');
+       camp.classList.add('hide');
       }
       
       if(state.current == 4 && startt == false || state.current == 5 && startt == false){
       state.current = 1
       cxt.clearRect(0,0,cvs.width,cvs.height);
       video.classList.add('hide');
+       gmaps.classList.add('hide');
+       pict.classList.add('hide');
+       camp.classList.add('hide');
       }
       console.log("swiped up");
+      
     } else {
       // swiped down
       console.log("swiped down");
@@ -485,12 +523,18 @@ function moveTouch(e) {
       state.current = 0.1
       cxt.clearRect(0,0,cvs.width,cvs.height);
       video.classList.add('hide');
+       gmaps.classList.add('hide');
+       pict.classList.add('hide');
+       camp.classList.add('hide');
       }
       
       if(state.current == 4 && startt == false || state.current == 5 && startt == false){
       state.current = 1
       cxt.clearRect(0,0,cvs.width,cvs.height);
       video.classList.add('hide');
+       gmaps.classList.add('hide');
+       pict.classList.add('hide');
+       camp.classList.add('hide');
       }
       if(state.current == 0){
       state.current = 0.1;
@@ -553,14 +597,41 @@ function handleTouchMove(evt) {
     yDown = null;                                             
 };
   // variables
+  var maxnum = 13;
+  var startnum = 0;
+  var passenter = null;
+  var t1 = 0;
 
-  
-  var password = 1469;
   
   function pasbox(){
   if(one == true){
   show1.textContent += "1"
   }
+  if(two == true){
+  show1.textContent += "2";
+  }
+  if(three == true){
+  show1.textContent += "3";
+  }
+  if(four == true){
+  show1.textContent += "4";
+  }
+  if(five == true){
+  show1.textContent += "5";
+  }
+  if(six == true){
+  show1.textContent += "6";
+  }
+  if(seven == true){
+  show1.textContent += "7";
+  }
+  if(eight == true){
+  show1.textContent += "8";
+  }
+  if(nine == true){
+  show1.textContent += "9";
+  }
+  
   }
   
   
@@ -576,14 +647,18 @@ rs.classList.add('hide');
   
   // functions
   function draw(){
+ 
+  
   if(state.current == 0.1){
-  rs.classList.remove('hide');
+  //rs.classList.remove('hide');
   
   }
   
   if(state.current == 0){
   fullPass.classList.remove('hide');
   rs.classList.add('hide');
+  
+  
   }
   if(state.current == 0.1){
   fullPass.classList.add('hide');
@@ -591,6 +666,7 @@ rs.classList.add('hide');
   if(state.current == 4){
   fullPass.classList.add('hide');
   rs.classList.add('hide');
+  
   }
   if(state.current == 5){
   cxt.fillRect(0,0,cvs.width,cvs.height);
@@ -600,6 +676,9 @@ rs.classList.add('hide');
   }
   
   function camapp(){
+  cxt.fillRect(0,0,cvs.width,cvs.height);
+  camp.classList.remove('hide');
+  pict.classList.remove('hide');
   state.current = 4;
   video.classList.remove('hide');
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUsermedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
@@ -610,12 +689,15 @@ rs.classList.add('hide');
   
   function handleVideo(stream){
   video.src = video.srcObject = stream; video.play();
-
   }
   
   function videoError(e){
   
   }
+  }
+  
+  function tp(){
+  pict.getContext("2d").drawImage(video, 0, 0, cvs.width, cvs.height);
   }
   
   var ep = false;;
@@ -697,6 +779,15 @@ rs.classList.add('hide');
   }
   
   var one = false;
+  var two = false;
+  var three = false;
+  var four = false;
+  var five = false;
+  var six = false;
+  var seven = false;
+  var eight = false;
+  var nine = false;
+  
   
   setInterval(updateTime, 1000);
   updateTime();
@@ -707,7 +798,15 @@ rs.classList.add('hide');
   }
   //loop
   function loop(){
+
+ 
+
+  
+  
+   // var x = document.cookie = password; "expires=Thu, 18 Dec 2999 12:00:00 UTC";
+
   requestAnimationFrame(loop);
+  console.log(x)
   draw();
   console.log(one)
   console.log(state.current);
