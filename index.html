@@ -335,7 +335,7 @@ overflow:hidden;
   
   </p>
   </div>
-  <div id=rs>
+  <div  id=rs>
   <img onclick=camapp() id=camlogo src="https://androidapksfree.com/wp-content/uploads/2018/04/Samsung-Camera-APK-2.png" alt="camera logo">
   <div id=stu>
   Swipe to unlock
@@ -404,7 +404,7 @@ overflow:hidden;
   <div id=x class=button onclick = "vibrate(500), pasbox()">
   x
   </div>
-  <div id=zero class = button onclick = "vibrate(500), pasbox()">
+  <div id=zero class = button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = true, pasbox()">
   0
   </div>
   <div id=ok class=button onclick = "vibrate(500), pasbox()">
@@ -423,12 +423,12 @@ overflow:hidden;
    </div>
   </div>
    
-  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+
   
   <script>
 
-var ones = true;
-var x2 = document.cookie = ones;
+
+
   
   const cvs = document.getElementById('cvs');
   const cxt = cvs.getContext('2d');
@@ -515,6 +515,7 @@ function moveTouch(e) {
        camp.classList.add('hide');
       }
       console.log("swiped up");
+     
       
     } else {
       // swiped down
@@ -634,7 +635,7 @@ function handleTouchMove(evt) {
   
   }
   
-  
+  var shelf = true;
   
   function gmif(){
   cxt.fillRect(0,0,cvs.width,cvs.height);
@@ -647,11 +648,11 @@ rs.classList.add('hide');
   
   // functions
   function draw(){
- 
+  
   
   if(state.current == 0.1){
-  //rs.classList.remove('hide');
-  
+ 
+  rs.classList.remove('hide');
   }
   
   if(state.current == 0){
@@ -803,12 +804,12 @@ rs.classList.add('hide');
 
   
   
-   // var x = document.cookie = password; "expires=Thu, 18 Dec 2999 12:00:00 UTC";
+   
 
   requestAnimationFrame(loop);
-  console.log(x)
+ 
   draw();
-  console.log(one)
+  //console.log(one)
   console.log(state.current);
   if(state.current == 0){
   tt1 = true;
