@@ -267,6 +267,14 @@ overflow:hidden;
     left:-15px;
     
   }
+  
+  #vc{
+    width:100px;
+    position:absolute;
+    top:490px;
+    left:10px;
+    
+  }
    
  #gmaps{
    
@@ -304,6 +312,84 @@ overflow:hidden;
    top:1100px;
    left:270px;
  }
+ 
+ #sstomp{
+   position:absolute;
+   top:500px;
+   font-size:20px;
+   left:50px;
+ }
+ 
+ #circleout{
+   width:70px;
+   height:70px;
+   border-radius:50px;
+   border: 2px solid black;
+   position:absolute;
+   top:1100px;
+   left:260px;
+ }
+ 
+ #circlein{
+   width:50px;
+   height:50px;
+   border-radius:50px;
+  
+   position:absolute;
+   top:1113px;
+   left:272px;
+   background-color:#e3242b;
+ }
+ 
+ #pausenoob{
+   width:50px;
+   height:50px;
+   border-radius:50px;
+  
+   position:absolute;
+   top:1113px;
+   left:272px;
+   background-color:#e3242b;
+ }
+ 
+ #aud1{
+   position:absolute;
+   top:700px;
+   left:140px;
+ }
+ 
+#aud2{
+   position:absolute;
+   top:800px;
+   left:140px;
+ }
+ 
+#aud3{
+   position:absolute;
+   top:900px;
+   left:140px;
+ }
+ 
+ #let1{
+   font-size:90px;
+ }
+ 
+#let2{
+   font-size:90px;
+ }
+ 
+#let3{
+   font-size:90px;
+ }
+ 
+#audtimerp{
+  font-size:90px;
+  position:absolute;
+  top:300px;
+  left:210px;
+}
+ 
+ 
    
    
   
@@ -313,6 +399,30 @@ overflow:hidden;
   <canvas id=cvs>
     
   </canvas>
+  <div id=audapp class="hide">
+  <!-- full audio app-->
+  <audio id="aud1" src="" controls></audio>
+  <audio id="aud2" src="" controls></audio>
+  <audio id="aud3" src="" controls></audio>
+<p id="audtimerp">
+<span id="let1">0</span>:<span id="let2">0</span><span id="let3">0</span>
+</p>
+  <div id="circlein" >
+  <!-- inside circle-->
+  </div>
+  <div id = circleout>
+  <!-- outside circle-->
+  </div>
+ 
+  </div>
+  
+  
+   <img class="hide" id="pausenoob" src="https://cdn.discordapp.com/attachments/809210836413448235/824379844741431306/unnamed.png" alt="pause?" width="50px">
+  <div id=sstomp class="hide">
+  <p>
+ <b> BECASUE THIS IS YOUR 1ST TIME SETUP  THE PASSWORD <br>YOU  PUT NOW WILL BE YOUR PASSWORD FOREVER</b>
+  </p>
+  </div>
   <iframe class=hide id=gmaps src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3105.1503819264803!2d-77.03871848491536!3d38.89767627957066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b7b7bcdecbb1df%3A0x715969d86d0b76bf!2sThe%20White%20House!5e0!3m2!1sen!2sus!4v1610565433976!5m2!1sen!2sus"  frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
   <canvas id=pict>
   
@@ -328,6 +438,8 @@ overflow:hidden;
   <img id=chrome src="https://1000logos.net/wp-content/uploads/2017/08/Chrome-Logo-768x626.png" alt="chrome">
   
   <img id=gmail src="https://1000logos.net/wp-content/uploads/2018/05/Gmail-logo.png" alt="gmail">
+  
+  <img onclick = "record()" id = vc src="https://www.apkmirror.com/wp-content/uploads/2021/01/54/601186da9c180.png" alt="samsung voice recorder">
   </div>
   
   <div id=cam>
@@ -374,40 +486,40 @@ overflow:hidden;
   </p>
   </div>
   <div id=startScreen>
-  <div id=one class=button onclick = "vibrate(500), one = true, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
+  <div id=one class=button onclick = "vibrate(500), one = true, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, zero = false,pasbox()">
   1
   </div>
-  <div id=two class=button onclick = "vibrate(500), one = false, two = true, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
+  <div id=two class=button onclick = "vibrate(500), one = false, two = true, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, zero = false,pasbox()">
   2
   </div>
-  <div id=three class=button onclick = "vibrate(500), one = false, two = false, three = true, four = false, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
+  <div id=three class=button onclick = "vibrate(500), one = false, two = false, three = true, four = false, five = false, six = false, seven = false, eight = false, nine = false,zero = false, pasbox()">
   3
   </div>
-  <div id=four class=button onclick = "vibrate(500), one = false, two = false, three = false, four = true, five = false, six = false, seven = false, eight = false, nine = false, pasbox()">
+  <div id=four class=button onclick = "vibrate(500), one = false, two = false, three = false, four = true, five = false, six = false, seven = false, eight = false, nine = false,zero = false, pasbox()">
   4
   </div>
-  <div id=five class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = true, six = false, seven = false, eight = false, nine = false, pasbox()">
+  <div id=five class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = true, six = false, seven = false, eight = false, nine = false,zero = false, pasbox()">
   5
   </div>
-  <div id=six class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = true, seven = false, eight = false, nine = false, pasbox()">
+  <div id=six class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = true, seven = false, eight = false, nine = false,zero = false, pasbox()">
   6
   </div>
-  <div id=seven class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = true, eight = false, nine = false, pasbox()">
+  <div id=seven class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = true, eight = false, nine = false,zero = false, pasbox()">
   7
   </div>
-  <div id=eight class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = true, nine = false, pasbox()">
+  <div id=eight class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = true, nine = false,zero = false, pasbox()">
   8
   </div>
-  <div id=nine class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = true, pasbox()">
+  <div id=nine class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = true,zero = false, pasbox()">
   9
   </div>
   <div id=x class=button onclick = "vibrate(500), pasbox()">
   x
   </div>
-  <div id=zero class = button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = true, pasbox()">
+  <div id=zero class = button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false, zero = true, pasbox()">
   0
   </div>
-  <div id=ok class=button onclick = "vibrate(500), pasbox()">
+  <div id=ok class=button onclick = "vibrate(500), one = false, two = false, three = false, four = false, five = false, six = false, seven = false, eight = false, nine = false,zero = false, ok = true, pasbox()">
    OK 
   </div>
   </div>
@@ -427,9 +539,9 @@ overflow:hidden;
   
   <script>
 
+ const circlein = document.getElementById('circlein');
 
-
-  
+  var audioChunks = [];
   const cvs = document.getElementById('cvs');
   const cxt = cvs.getContext('2d');
   // conts
@@ -442,7 +554,16 @@ overflow:hidden;
   app : 3,
   camapp : 4,
   maps:5,
+  voicerecorder: 6,
   }
+  
+  const audState = {
+  current: 0,
+  start: 0,
+  pause:1,
+  }
+  
+  var audtimer = 0;
   
   //swipe
   cvs.addEventListener("touchstart", startTouch, false);
@@ -602,40 +723,64 @@ function handleTouchMove(evt) {
   var startnum = 0;
   var passenter = null;
   var t1 = 0;
-
+  var passf = null;
+  var non = null;
   
   function pasbox(){
+  if(t1 <= 23){
   if(one == true){
   show1.textContent += "1"
+  t1 += 1;
   }
   if(two == true){
   show1.textContent += "2";
+  t1 += 1;
   }
   if(three == true){
   show1.textContent += "3";
+  t1 += 1;
   }
   if(four == true){
   show1.textContent += "4";
+  t1 += 1;
   }
   if(five == true){
   show1.textContent += "5";
+  t1 += 1;
   }
   if(six == true){
   show1.textContent += "6";
+  t1 += 1;
   }
   if(seven == true){
   show1.textContent += "7";
+  t1 += 1;
   }
   if(eight == true){
   show1.textContent += "8";
+  t1 += 1;
   }
   if(nine == true){
   show1.textContent += "9";
+  t1 += 1;
   }
+  if(zero == true){
+   show1.textContent += "0";
+  t1 += 1;
+  }
+  if(ok == true){
+  state.current = 1;
+  localStorage.setItem("PASS",show1.textContent);
+  non = localStorage.getItem("PASS");
+  console.log(non);
+  }
+  }
+  
   
   }
   
-  var shelf = true;
+var rob = null;
+  
   
   function gmif(){
   cxt.fillRect(0,0,cvs.width,cvs.height);
@@ -646,18 +791,25 @@ rs.classList.add('hide');
   
   }
   
+  // localhost
+  var shelf = true;
+  
+  
   // functions
   function draw(){
   
   
   if(state.current == 0.1){
- 
+  sstomp.classList.add('hide');
   rs.classList.remove('hide');
   }
   
   if(state.current == 0){
   fullPass.classList.remove('hide');
   rs.classList.add('hide');
+  if(shelf == true){
+  sstomp.classList.remove('hide');
+  }
   
   
   }
@@ -674,6 +826,73 @@ rs.classList.add('hide');
   fullPass.classList.add('hide');
   rs.classList.add('hide');
   }
+  if(state.current == 1){
+  fullPass.classList.add('hide');
+  shelf = false;
+  sstomp.classList.add('hide');
+  }
+  }
+  
+  function record(){
+  
+  audapp.classList.remove('hide');
+  state.current = 6;
+  cxt.fillStyle = "white";
+  cxt.fillRect(0,0, cvs.width, cvs.height);
+  sstomp.classList.add('hide');
+  rs.classList.add('hide');
+  fullPass.classList.add('hide');
+  // mediarecorderapi
+  navigator.mediaDevices.getUserMedia({ audio: true })
+  .then(stream => {
+    const mediaRecorder = new MediaRecorder(stream);
+    
+    
+   
+    
+    circleout.addEventListener('click',function(){
+    
+     mediaRecorder.start();
+     
+    console.log("recording has started");
+     mediaRecorder.addEventListener("dataavailable", event => {
+      audioChunks.push(event.data);
+    });
+    audioChunks = [];
+    
+    pausenoob.classList.remove('hide');
+     circlein.classList.add('hide'); 
+     
+    //
+     //rob = true;
+    })
+    
+    
+    
+    
+    pausenoob.addEventListener('click',function(){
+    
+circlein.classList.add('hide');
+    //rob = false;
+    mediaRecorder.stop();
+    console.log("recording has stoped");
+    })
+
+    mediaRecorder.addEventListener("stop", () => {
+      const audioBlob = new Blob(audioChunks);
+      
+      const audioUrl = URL.createObjectURL(audioBlob);
+ 
+      aud1.src = audioUrl;
+      audioChunks = [];
+    });
+    
+
+  });
+  
+  
+  
+  
   }
   
   function camapp(){
@@ -800,17 +1019,37 @@ rs.classList.add('hide');
   //loop
   function loop(){
 
+ //console.log(localStorage.key(0))
+  localStorage.setItem("name", "true");
+  if(shelf == true){
+  localStorage.setItem("name", "true");
+  shelf = true
+  }
+  if(shelf == false){
+  localStorage.setItem("name", "false");
+  shelf = false
+  }
+  if(localStorage.name == "true"){
+  shelf = true
+  }
+  if(localStorage.name == "false"){
+  shelf = false
+  }
+  
  
-
-  
-  
-   
-
   requestAnimationFrame(loop);
+ if(rob == false){
+ circleout.classList.remove('hide');
+ pausenoob.classList.add('hide');
+ }
  
+  if(rob == true){
+ circlein.classList.add('hide');
+ pausenoob.classList.remove('hide');
+ }
   draw();
   //console.log(one)
-  console.log(state.current);
+  //console.log(state.current);
   if(state.current == 0){
   tt1 = true;
   }
